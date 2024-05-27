@@ -29,7 +29,7 @@
     - https://reffect.co.jp/laravel/laravel-gate-policy-understand
 
 ## とりあえずサンプル実装してみる
-
+```
 Guard
     名前 myapp1_user
     config/auth.php にセットする
@@ -38,3 +38,7 @@ Guard
             class MyApp1UserGuard
             AppServiceProvider::boot() で登録する
             名前 myapp1_user_guard
+
+    └ Guardに渡すプロバイダ
+            class MyApp1UserProvider
+```
