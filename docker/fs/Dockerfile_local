@@ -1,0 +1,5 @@
+FROM debian:stable-slim
+
+# ローカル環境では、ソースコードのディレクトリはバインドマウントする。COPY はしない。
+
+VOLUME /var/www/src
