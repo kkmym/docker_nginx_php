@@ -31,14 +31,55 @@
 ## とりあえずサンプル実装してみる
 ```
 Guard
-    名前 myapp1_user
+    名前 myapp1_users
     config/auth.php にセットする
 
     └  Guard用ドライバ
-            class MyApp1UserGuard
+            class MyApp1UsersGuard
             AppServiceProvider::boot() で登録する
-            名前 myapp1_user_guard
+                Auth::extend(); を使う
+                    users という文字列と紐づける
+            名前 myapp1_users_guard
 
     └ Guardに渡すプロバイダ
-            class MyApp1UserProvider
+            名前 users_provider
+
+Provider
+    ドライバ
+        class MyApp1UsersProvider
+        AppServiceProvider::boot() で登録する
+            Auth::provider(); を使う
+                myapp1_users_provider という文字列と紐づける
+        名前 myapp1_users_provider
+```
+
+config/auth.php の想定する状態
+```
+return [
+    'guards' => [
+        'admins' => [
+            'driver' => 'myapp1_admins_guard',
+            'provider' => 'admins_provider',
+        ],
+        'clients' => [
+            'driver' => 'myapp1_clients_guard',
+            'provider' => 'clients_provider',
+        ]
+        'users' => [
+            'driver' => 'myapp1_users_guard',
+            'provider' => 'users_provider',
+        ],
+    ],
+    'providers' => [
+        'admins_provider' => [
+            'driver' => 'myapp1_admins_provider',
+        ],
+        'clients_provider' => [
+            'driver' => 'myapp1_clients_provider',
+        ],
+        'users_provider' => [
+            'driver' => 'myapp1_users_provider',
+        ],
+    ],
+]
 ```
