@@ -31,7 +31,7 @@
 ## とりあえずサンプル実装してみる
 ```
 Guard
-    名前 myapp1_users
+    名前 users
     config/auth.php にセットする
 
     └  Guard用ドライバ
